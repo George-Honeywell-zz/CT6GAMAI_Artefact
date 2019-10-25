@@ -15,9 +15,17 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = startHealth;
     }
 
-    public void TakeDamage(float amount)
+    void Update()
     {
-        currentHealth -= amount;
         healthSlider.value = currentHealth;
+        if (Input.GetKey(KeyCode.A))
+        {
+            currentHealth -= 10;
+        }
+
+        if (Input.GetKey(KeyCode.S))
+        {
+            currentHealth += 10;
+        }
     }
 }
