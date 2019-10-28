@@ -32,7 +32,7 @@ public class FramesPerSecond : MonoBehaviour
 
     void OnGUI()
     {
-        GUI.Label(new Rect(5, 40, 100, 25), label);
-        GUI.Label(new Rect(5, 60, 200, 25), label2);
+        GUI.Label(new Rect(5, 140, 100, 25), label);
+        GUI.Label(new Rect(5, 160, 200, 25), label2);
     }
 }

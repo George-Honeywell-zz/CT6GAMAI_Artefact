@@ -23,9 +23,26 @@ public class PlayerHealth : MonoBehaviour
             currentHealth -= 10;
         }
 
-        if (Input.GetKey(KeyCode.S))
+        //if (Input.GetKey(KeyCode.S))
+        //{
+        //    currentHealth += 10;
+        //}
+        Die();
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        if(other.tag == "Enemy")
         {
-            currentHealth += 10;
+            currentHealth -= 0.1f;
+        }
+    }
+
+    void Die()
+    {
+        if(currentHealth <= 0.0f)
+        {
+            Destroy(gameObject);
         }
     }
 }
