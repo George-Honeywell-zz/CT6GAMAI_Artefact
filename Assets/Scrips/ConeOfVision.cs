@@ -5,9 +5,6 @@ using UnityEditor;
 
 public class ConeOfVision : MonoBehaviour
 {
-
-    public Transform target;
-    public GameObject Player;
     public float maxAngle = 45.0f;
     public float maxRadius = 10.0f;
     public float movementSpeed = 3.0f;
