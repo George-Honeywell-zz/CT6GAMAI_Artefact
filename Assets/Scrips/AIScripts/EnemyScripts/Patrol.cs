@@ -15,7 +15,7 @@ public class Patrol : State<Enemy>
         Vector3 targetDirection = enemy.Player.transform.position - enemy.transform.position;
         float angle = Vector3.Angle(targetDirection, enemy.transform.forward);
         float seeDistance = Vector3.Distance(targetDirection, enemy.transform.forward);
-        Debug.Log(angle);
+        //Debug.Log(angle);
         enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, enemy.moveToPos[enemy.randomPos].position, enemy.speed * Time.deltaTime);
         enemy.transform.rotation = Quaternion.LookRotation(enemy.transform.forward);
         enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, Quaternion.LookRotation(Vector3.forward), 0.15f);

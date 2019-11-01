@@ -16,7 +16,7 @@ public class Chase : State<Enemy>
         Vector3 targetDirection = enemy.transform.position - enemy.Player.transform.position;
         float angle = Vector3.Angle(targetDirection, enemy.transform.forward);
         float seeDistance = Vector3.Distance(targetDirection, enemy.transform.forward);
-        Debug.Log(angle);
+        //Debug.Log(angle);
 
         if (angle < 45.0 && seeDistance < 10.0)
         {
