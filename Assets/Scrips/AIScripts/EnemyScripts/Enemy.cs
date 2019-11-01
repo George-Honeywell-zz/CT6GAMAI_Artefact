@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    State<Enemy> m_State;
-
+    public State<Enemy> m_State;
+    public GameObject Player;
     public float speed;
     public int randomPos;
     public float waitTime;
@@ -15,7 +15,6 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         m_State = new Patrol();
-        m_State = new Chase();
         waitTime = startWaitTime;
         randomPos = Random.Range(0, moveToPos.Length);
     }

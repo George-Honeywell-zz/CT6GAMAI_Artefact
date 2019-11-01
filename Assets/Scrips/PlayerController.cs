@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public float energy = 100.0f;
     public float speed = 2.0f;
+    public Camera mainCamera;
 
 
     // Update is called once per frame
@@ -29,6 +30,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.UpArrow))
         {
             transform.position += Vector3.forward * speed * Time.deltaTime;
+            //transform.position = mainCamera.transform.forward * Time.deltaTime;
         }
     }
 }
