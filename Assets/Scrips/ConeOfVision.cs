@@ -8,9 +8,10 @@ public class ConeOfVision : MonoBehaviour
 
     public Transform target;
     public GameObject Player;
+    public Enemy enemy;
     public float maxAngle = 45.0f;
     public float maxRadius = 10.0f;
-    public float movementSpeed = 5.0f;
+    //public float movementSpeed = 5.0f;
    
     private Material material;
     Color yellow = new Vector4(1.0f, 1.0f, 0.0f);
@@ -26,24 +27,24 @@ public class ConeOfVision : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 targetDirection = target.position - transform.position;
-        float angle = Vector3.Angle(targetDirection, transform.forward);
-        float seeDistance = Vector3.Distance(targetDirection, transform.forward);
+        //Vector3 targetDirection = target.position - transform.position;
+        //float angle = Vector3.Angle(targetDirection, transform.forward);
+        //float seeDistance = Vector3.Distance(targetDirection, transform.forward);
 
-        if (angle < 45.0 && seeDistance < 10.0)
-        {
-            Debug.Log("In Sight");
-            material.color = orange;
-            transform.LookAt(Player.transform);
-            //transform.Rotate(transform.position);
-            transform.position += transform.forward * movementSpeed * Time.deltaTime;
-        }
+        //if (angle < 45.0 && seeDistance < 10.0)
+        //{
+        //    Debug.Log("In Sight");
+        //    material.color = orange;
+        //    transform.LookAt(Player.transform);
+        //    //transform.Rotate(transform.position);
+        //    transform.position += transform.forward * enemy.speed * Time.deltaTime;
+        //}
 
-        if(angle > 45.0 && seeDistance > 10.0)
-        {
-            Debug.Log("Not in Sight");
-            material.color = yellow;
-        }
+        //if(angle > 45.0 && seeDistance > 10.0)
+        //{
+        //    Debug.Log("Not in Sight");
+        //    material.color = yellow;
+        //}
     }
 
     void OnDrawGizmos()
