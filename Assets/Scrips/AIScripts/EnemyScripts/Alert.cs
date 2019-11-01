@@ -12,7 +12,7 @@ public class Alert : State<Enemy>
 
     public override void Execute(Enemy enemy)
     {
-        Vector3 targetDirection = enemy.Player.transform.position - enemy.Player.transform.position;
+        Vector3 targetDirection = enemy.transform.position - enemy.Player.transform.position;
         float angle = Vector3.Angle(targetDirection, enemy.Player.transform.forward);
         float seeDistance = Vector3.Distance(targetDirection, enemy.Player.transform.forward);
 
