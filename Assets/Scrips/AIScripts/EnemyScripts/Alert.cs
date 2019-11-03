@@ -14,7 +14,10 @@ public class Alert : State<Enemy>
     {
         Debug.Log("Agent in 'ALERT' State");
 
-        Vector3 targetDirection = enemy.transform.position - enemy.Player.transform.position;
+          //Vector3 targetDirection = enemy.transform.position - enemy.Player.transform.position;
+          Vector3 targetDirection = enemy.Player.transform.position - enemy.transform.position;
+
+
         float angle = Vector3.Angle(targetDirection, enemy.transform.forward);
         float seeDistance = Vector3.Distance(targetDirection, enemy.transform.forward);
         enemy.transform.rotation = Quaternion.LookRotation(enemy.transform.forward);
