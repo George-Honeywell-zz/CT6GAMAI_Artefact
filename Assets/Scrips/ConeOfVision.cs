@@ -32,7 +32,7 @@ public class ConeOfVision : MonoBehaviour
         Gizmos.DrawRay(transform.position, fovLine2);
 
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position, (Player.position - transform.position).normalized * maxRadius);
+        //Gizmos.DrawRay(transform.position, (Player.position - transform.position).normalized * maxRadius);
 
         Gizmos.color = Color.black;
         Gizmos.DrawRay(transform.position, transform.forward * maxRadius);

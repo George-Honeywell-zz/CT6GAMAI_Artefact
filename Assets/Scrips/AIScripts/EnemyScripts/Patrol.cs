@@ -35,7 +35,7 @@ public class Patrol : State<Enemy>
 
         if(angle < 45.0 && seeDistance < 20.0)
         {
-            Debug.Log("Enetering 'ALERT' State");
+            //Debug.Log("Enetering 'ALERT' State");
             enemy.m_State = new Alert();
         }
     }
