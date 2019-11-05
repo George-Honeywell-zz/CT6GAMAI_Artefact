@@ -11,6 +11,7 @@ public class Patrol : State<Enemy>
     public override void Execute(Enemy enemy)
     {
         //material.color = yellow;
+        Debug.Log("In -PATROL- State");
 
         //Vector3 targetDirection = enemy.transform.position - enemy.Player.transform.position;
         Vector3 targetDirection = enemy.Player.transform.position - enemy.transform.position;
