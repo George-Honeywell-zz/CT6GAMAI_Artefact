@@ -22,6 +22,7 @@ public class Alert : State<Enemy>
         float seeDistance = Vector3.Distance(targetDirection, enemy.transform.forward);
         enemy.transform.rotation = Quaternion.LookRotation(enemy.transform.forward);
         enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, Quaternion.LookRotation(Vector3.forward), 0.15f);
+        enemy.transform.LookAt(enemy.Player.transform);
 
         if (angle > 60.0 && seeDistance > 20.0)
         {
