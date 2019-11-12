@@ -5,9 +5,6 @@ using UnityEngine;
 public class Patrol : State<Enemy>
 {
 
-    private Material material;
-    Color yellow = new Vector4(1.0f, 1.0f, 0.0f);
-
     public override void Execute(Enemy enemy)
     {
         //material.color = yellow;
