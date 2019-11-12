@@ -5,7 +5,7 @@ using UnityEngine;
 public class Unit : MonoBehaviour
 {
     public Transform target;
-    float speed = 20.0f;
+    float speed = 5.0f;
     Vector3[] path;
     int targetIndex;
 
@@ -50,7 +50,7 @@ public class Unit : MonoBehaviour
         {
             for(int i = targetIndex; i < path.Length; i++)
             {
-                Gizmos.color = color.black;
+                Gizmos.color = Color.black;
                 Gizmos.DrawCube(path[i], Vector3.one);
 
                 if( i == targetIndex)
