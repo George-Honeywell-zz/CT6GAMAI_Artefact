@@ -33,6 +33,10 @@ public class Pathfinding : MonoBehaviour
         HashSet<Node> closedSet = new HashSet<Node>();
         openSet.Add(startNode);
 
+
+        //<summary>
+        //Currently the slowest 
+        //</summary>
         while(openSet.Count > 0)
         {
             Node currentNode = openSet[0];
