@@ -15,8 +15,8 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         m_State = new Patrol();
-        waitTime = startWaitTime;
-        randomPos = Random.Range(0, moveToPos.Length);
+        //waitTime = startWaitTime;
+        //randomPos = Random.Range(0, moveToPos.Length);
     }
 
     void Update()

@@ -3,15 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Unit : MonoBehaviour
-{
+{ 
+    Enemy enemy;
     public Transform target;
-    float speed = 5.0f;
+    public float speed = 5.0f;
+    //- Do not edit the variable below in the inspector -//
     Vector3[] path;
-    int targetIndex;
+    public int targetIndex;
 
     void Start()
     {
-        PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
+        //enemy.waitTime = enemy.startWaitTime;
+        //enemy.randomPos = Random.Range(0, enemy.moveToPos.Length);
+        //for (int i = 0; i < 2; i++) {
+            PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
+        //}
     }
 
     public void OnPathFound(Vector3[] newPath, bool pathSuccessful)
