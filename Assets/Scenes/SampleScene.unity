@@ -6337,6 +6337,8 @@ GameObject:
   - component: {fileID: 1825150798}
   - component: {fileID: 1825150797}
   - component: {fileID: 1825150796}
+  - component: {fileID: 1825150800}
+  - component: {fileID: 1825150799}
   m_Layer: 0
   m_Name: Target (3)
   m_TagString: Untagged
@@ -6478,6 +6480,46 @@ MonoBehaviour:
   maxSpeed: 1
   maxForce: 1
   maxTurnRate: 1
+--- !u!114 &1825150799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1825150790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6be827dcc1fc5284e94bbc801bfae5f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensedObject: []
+  sensedRecord: []
+--- !u!114 &1825150800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1825150790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc833d598b84cd249bf52d1f06379e35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewRadius: 10
+  viewAngle: 45
+  TargetLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  visibleTargets: []
+  meshResolution: 0
+  edgeResolveIterations: 0
+  edgeDistanceThreshold: 0
+  viewMeshFilter: {fileID: 0}
+  drawField: 1
 --- !u!1 &1827838156
 GameObject:
   m_ObjectHideFlags: 0
