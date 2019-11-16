@@ -64,7 +64,7 @@ public class FieldOfView : MonoBehaviour
 
             foreach(Transform target in visibleTargets)
             {
-                Debug.DrawLine(transform.position, target.position, Color.red);
+                Debug.DrawLine(transform.position, target.position, Color.blue);
             }
         }
         else
@@ -75,22 +75,80 @@ public class FieldOfView : MonoBehaviour
 
     void DrawFieldView()
     {
-        Gizmos.DrawWireSphere(transform.position, viewRadius);
-        Gizmos.DrawWireSphere(transform.position, 20.0f);
+        int stepCount = Mathf.RoundToInt(viewAngle * meshResolution);
+        float stepAngleSize = viewAngle / stepCount;
+        List<Vector3> viewPoints = new List<Vector3>();
+        ViewCastInfo oldViewCast = new ViewCastInfo();
+        for (int i = 0; i <= stepCount; i++)
+        {
+            float angle = transform.eulerAngles.y - viewAngle / 2 + stepAngleSize * i;
+            ViewCastInfo newViewCast = ViewCast(angle);
 
-        Vector3 fovLine1 = Quaternion.AngleAxis(viewAngle, transform.up) * transform.forward * viewRadius;
-        Vector3 fovLine2 = Quaternion.AngleAxis(-viewAngle, transform.up) * transform.forward * viewRadius;
+            if (i > 0)
+            {
+                bool edgeDstThresholdExceeded = Mathf.Abs(oldViewCast.distance - newViewCast.distance) > edgeDistanceThreshold;
+                if (oldViewCast.hit != newViewCast.hit || (oldViewCast.hit && newViewCast.hit && edgeDstThresholdExceeded))
+                {
+                    EdgeInfo edge = FindEdge(oldViewCast, newViewCast);
+                    if (edge.pointA != Vector3.zero)
+                    {
+                        viewPoints.Add(edge.pointA);
+                    }
+                    if (edge.pointB != Vector3.zero)
+                    {
+                        viewPoints.Add(edge.pointB);
+                    }
+                }
 
-        Gizmos.color = Color.blue;
-        Gizmos.DrawRay(transform.position, fovLine1);
-        Gizmos.DrawRay(transform.position, fovLine2);
+            }
 
-        Gizmos.color = Color.red;
-        //Gizmos.DrawRay(transform.position, (Player.position - transform.position).normalized * maxRadius);
 
-        Gizmos.color = Color.black;
-        Gizmos.DrawRay(transform.position, transform.forward * viewRadius);
+            viewPoints.Add(newViewCast.point);
+            oldViewCast = newViewCast;
+        }
+
+        int vertexCount = viewPoints.Count + 1;
+        Vector3[] vertices = new Vector3[vertexCount];
+        int[] triangles = new int[(vertexCount - 2) * 3];
+
+        vertices[0] = Vector3.zero;
+        for (int i = 0; i < vertexCount - 1; i++)
+        {
+            vertices[i + 1] = transform.InverseTransformPoint(viewPoints[i]);
+
+            if (i < vertexCount - 2)
+            {
+                triangles[i * 3] = 0;
+                triangles[i * 3 + 1] = i + 1;
+                triangles[i * 3 + 2] = i + 2;
+            }
+        }
+
+        viewMesh.Clear();
+
+        viewMesh.vertices = vertices;
+        viewMesh.triangles = triangles;
+        viewMesh.RecalculateNormals();
     }
+
+    //void OnDrawGizmos()
+    //{
+    //    Gizmos.DrawWireSphere(transform.position, viewRadius);
+    //    Gizmos.DrawWireSphere(transform.position, 20.0f);
+
+    //    Vector3 fovLine1 = Quaternion.AngleAxis(viewAngle, transform.up) * transform.forward * viewRadius;
+    //    Vector3 fovLine2 = Quaternion.AngleAxis(-viewAngle, transform.up) * transform.forward * viewRadius;
+
+    //    Gizmos.color = Color.blue;
+    //    Gizmos.DrawRay(transform.position, fovLine1);
+    //    Gizmos.DrawRay(transform.position, fovLine2);
+
+    //    Gizmos.color = Color.red;
+    //    //Gizmos.DrawRay(transform.position, (Player.position - transform.position).normalized * maxRadius);
+
+    //    Gizmos.color = Color.black;
+    //    Gizmos.DrawRay(transform.position, transform.forward * viewRadius);
+    //}
 
     EdgeInfo FindEdge(ViewCastInfo minViewCast, ViewCastInfo maxViewCast)
     {
