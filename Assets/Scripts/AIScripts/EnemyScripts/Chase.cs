@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Chase : State<Enemy>
 {
-    //Color red = new Vector4(1.0f, 0.0f, 0.0f);
-
+    
     public override void Execute(Enemy enemy)
     {
         Debug.Log("~ CHASE STATE ~");
@@ -22,7 +21,7 @@ public class Chase : State<Enemy>
             Debug.Log("In Sight!");
 
             enemy.transform.LookAt(enemy.Player.transform);
-            enemy.transform.position += enemy.transform.forward * enemy.speed * Time.deltaTime;
+            enemy.agent.sb.SeekOn(enemy.Player.transform.position);
         }
 
         if (angle > 45.0 && seeDistance > 10.0)

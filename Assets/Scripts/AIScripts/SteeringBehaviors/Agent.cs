@@ -10,7 +10,7 @@ public class Agent : MonoBehaviour
     public float maxSpeed = 1;
     public float maxForce = 1;
     public float maxTurnRate = 1.0f;
-    private SteeringBehavior sb;
+    public SteeringBehavior sb;
 
     void Start()
     {

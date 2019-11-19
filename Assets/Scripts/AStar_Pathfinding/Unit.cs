@@ -13,11 +13,8 @@ public class Unit : MonoBehaviour
 
     void Start()
     {
-        //enemy.waitTime = enemy.startWaitTime;
-        //enemy.randomPos = Random.Range(0, enemy.moveToPos.Length);
-        //for (int i = 0; i < 2; i++) {
-            PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
-        //}
+        PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
+
     }
 
     public void OnPathFound(Vector3[] newPath, bool pathSuccessful)

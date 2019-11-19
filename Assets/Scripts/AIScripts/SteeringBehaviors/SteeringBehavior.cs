@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Agent))]
+//[RequireComponent(typeof(Agent))]
 public class SteeringBehavior : MonoBehaviour
 {
     Agent agent;
+
 
     //Seek
     bool isSeekOn = false;
