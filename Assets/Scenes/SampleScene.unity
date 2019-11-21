@@ -7367,7 +7367,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0, z: 0}
   mass: 1
-  maxSpeed: 1
+  maxSpeed: 2.8
   maxForce: 1
   maxTurnRate: 1
   sb: {fileID: 0}
