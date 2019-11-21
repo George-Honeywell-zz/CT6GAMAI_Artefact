@@ -10,6 +10,7 @@ public class SteeringBehavior : MonoBehaviour
 
     //Seek
     bool isSeekOn = false;
+    bool isPathOn = false;
     Vector3 seekOnTargetPos;
     float seekOnStopDistance;
 
@@ -19,7 +20,8 @@ public class SteeringBehavior : MonoBehaviour
     public float wanderDistance = 10.0f;
     public float wanderJitter = 1.0f;
     public Vector3 wanderTarget = Vector3.zero;
-
+    Vector3[] path;
+    int currentWayPoint;
 
     void Start()
     {
@@ -53,6 +55,11 @@ public class SteeringBehavior : MonoBehaviour
 
     Vector3 Seek(Vector3 targetPos)
     {
+        //<summary>
+        //When the player gets within the defined view distance, then turn the seek behavior 'ON'
+        //And seek the player
+        //</summary>
+        Debug.Log("Seek ON");
         Vector3 desiredVelocity = (targetPos - transform.position).normalized * agent.maxSpeed;
         return (desiredVelocity - agent.velocity);
     }
@@ -81,6 +88,7 @@ public class SteeringBehavior : MonoBehaviour
 
     public void SeekOn(Vector3 targetPos, float stoppingDistance = 0.01f)
     {
+
         isSeekOn = true;
         seekOnTargetPos = targetPos;
         seekOnStopDistance = stoppingDistance;
@@ -96,6 +104,36 @@ public class SteeringBehavior : MonoBehaviour
     {
         isWanderOn = false;
         agent.velocity = Vector3.zero; 
+    }
+
+    public void PathFollowingOn(Vector3[] path)
+    {
+        isPathOn = true;
+        this.path = path;
+        currentWayPoint = 0;
+    }
+
+    Vector3 PathFollowing()
+    {
+        //If the agent is close enough to paths.currentWayPoint
+        if((transform.position - path[currentWayPoint]).magnitude < 1.5)
+        {
+            //paths.setnextwaypoint
+            currentWayPoint++;
+        }
+
+        //If this isn't the last way point in the list
+        if(path.Length <= currentWayPoint)
+        {
+            //Return Seek(Paths.CurrentWayPoint)
+            r
+        }
+        //Else this is the last waypoint
+        else
+        {
+            //Return Arrive(Paths.CurrentWayPoint)
+            return ;
+        }
     }
 
 }
