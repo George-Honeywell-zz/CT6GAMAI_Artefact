@@ -11,7 +11,7 @@ public class EnemyAttack : MonoBehaviour
 
     void OnCollisionEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
             Debug.Log("Colliding!");
         }
@@ -19,7 +19,7 @@ public class EnemyAttack : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if(other.gameObject == Player)
+        if (other.gameObject == Player)
         {
             inAttackRange = false;
         }
