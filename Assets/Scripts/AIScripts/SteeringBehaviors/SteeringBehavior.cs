@@ -114,27 +114,27 @@ public class SteeringBehavior : MonoBehaviour
         currentWayPoint = 0;
     }
 
-    //Vector3 PathFollowing()
-    //{
-    //    //If the agent is close enough to paths.currentWayPoint
-    //    if ((transform.position - path[currentWayPoint]).magnitude < 1.5)
-    //    {
-    //        //paths.setnextwaypoint
-    //        currentWayPoint++;
-    //    }
+    Vector3 PathFollowing()
+    {
+        //If the agent is close enough to paths.currentWayPoint
+        if ((transform.position - path[currentWayPoint]).magnitude < 1.5)
+        {
+            //paths.setnextwaypoint
+            currentWayPoint++;
+        }
 
-    //    //If this isn't the last way point in the list
-    //    if (path.Length <= currentWayPoint)
-    //    {
-    //        //Return Seek(Paths.CurrentWayPoint)
-    //        return Seek(path);
-    //    }
-    //    //Else this is the last waypoint
-    //    else
-    //    {
-    //        //Return Arrive(Paths.CurrentWayPoint)
-    //        return path;
-    //    }
-    //}
+        //If this isn't the last way point in the list
+        if (path.Length <= currentWayPoint)
+        {
+            //Return Seek(Paths.CurrentWayPoint)
+            return Seek(seekOnTargetPos);
+        }
+        //Else this is the last waypoint
+        else
+        {
+            //Return Arrive(Paths.CurrentWayPoint)
+            return seekOnTargetPos;
+        }
+    }
 
 }

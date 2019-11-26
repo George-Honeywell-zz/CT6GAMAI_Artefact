@@ -6520,11 +6520,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e1d38c7dfdc024686e1f2ca20411ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  agent: {fileID: 1825150798}
   layerMask:
     serializedVersion: 2
-    m_Bits: 1844
+    m_Bits: 1840
   boundingSphereRadius: 1
-  obstcaleDistance: 6
+  obstcaleDistance: 10
   forceConversion: 0.9
   forceConversionDuration: 1
   floorAngle: 45
@@ -7536,6 +7537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e1d38c7dfdc024686e1f2ca20411ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  agent: {fileID: 0}
   layerMask:
     serializedVersion: 2
     m_Bits: 1024
