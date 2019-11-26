@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ObstacleAvoidance : MonoBehaviour
 {
-    Agent agent;
+    public Agent agent;
     
     public LayerMask layerMask;
     public float boundingSphereRadius = 1;
