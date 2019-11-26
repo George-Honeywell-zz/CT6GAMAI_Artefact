@@ -127,14 +127,18 @@ public class SteeringBehavior : MonoBehaviour
         if (path.Length <= currentWayPoint)
         {
             //Return Seek(Paths.CurrentWayPoint)
-            return Seek(seekOnTargetPos);
+            return Seek(path[currentWayPoint]);
         }
-        //Else this is the last waypoint
         else
         {
-            //Return Arrive(Paths.CurrentWayPoint)
-            return seekOnTargetPos;
+            //return currentWayPoint = 0;
         }
+        //Else this is the last waypoint
+        //else
+        //{
+        //    //Return Arrive(Paths.CurrentWayPoint)
+        //    return seekOnTargetPos;
+        //}
     }
 
 }
