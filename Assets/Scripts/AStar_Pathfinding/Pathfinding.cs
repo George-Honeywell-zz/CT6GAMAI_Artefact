@@ -18,19 +18,6 @@ public class Pathfinding : MonoBehaviour
         grid = GetComponent<Grid>();
     }
 
-    //void Update()
-    //{
-    //    List<Node> path = new List<Node>();
-    //    grid.path = path;
-    //    for (int i = 0; i < 5; i++)
-    //    {
-    //        if (Input.GetButtonDown("Jump"))
-    //        {
-    //            FindPath(seeker.position, target[i].position);
-    //        }
-    //    }
-    //}
-
     public void StartFindPath(Vector3 startPos, Vector3 targetPos)
     {
         StartCoroutine(FindPath(startPos, targetPos));
