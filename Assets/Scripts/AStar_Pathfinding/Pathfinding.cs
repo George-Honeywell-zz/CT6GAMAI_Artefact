@@ -43,7 +43,8 @@ public class Pathfinding : MonoBehaviour
 
 
             //<summary>
-            //Currently the slowest part of the algorithm, as with each iteration, the algorithm searches through the entire open set
+            //Currently the slowest part of the algorithm, as with each iteration, 
+            //the algorithm searches through the entire open set
             //to find the node with the lowest F cost.
             //</summary>
             while (openSet.Count > 0)
@@ -51,7 +52,8 @@ public class Pathfinding : MonoBehaviour
                 Node currentNode = openSet.RemoveFirst();
                 //for(int i = 1; i < openSet.Count; i++)
                 //{
-                //    if(openSet[i].fCost < currentNode.fCost || openSet[i].fCost == currentNode.fCost && openSet[i].hCost < currentNode.hCost)
+                //    if(openSet[i].fCost < currentNode.fCost 
+                //       || openSet[i].fCost == currentNode.fCost && openSet[i].hCost < currentNode.hCost)
                 //    {
                 //        currentNode = openSet[i];
                 //    }
