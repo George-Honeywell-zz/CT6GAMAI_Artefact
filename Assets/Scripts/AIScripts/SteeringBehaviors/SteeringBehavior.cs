@@ -6,7 +6,7 @@ using UnityEngine;
 public class SteeringBehavior : MonoBehaviour
 {
     Agent agent;
-
+    private Rigidbody rigidBody;
 
     //Seek
     bool isSeekOn = false;
@@ -23,6 +23,20 @@ public class SteeringBehavior : MonoBehaviour
     public Vector3 wanderTarget = Vector3.zero;
     Vector3[] path;
     int currentWayPoint;
+
+    //Obstalce Avoidance Variables
+    [Header("Obstalce Avoidance")]
+    bool isObstalceOn = false;
+    public LayerMask layerMask;
+    public float boundingSphereRadius = 1.0f;
+    public float obstalceDistance = 10.0f;
+    public float forceConversion = 0.9f;
+    public float conversionDuration = 1.0f;
+    public float floorAngle = 45.0f;
+    public float forceTimer = 0;
+    public Vector3 oldSteeringForce = Vector3.zero;
+    public Vector3 desiredVelocity = Vector3.zero;
+    public Vector3 steeringForce = Vector3.zero;
 
     void Start()
     {
@@ -50,6 +64,11 @@ public class SteeringBehavior : MonoBehaviour
         if (isWanderOn)
         {
             velocitySum += Wander();
+        }
+
+        if (isObstalceOn)
+        {
+
         }
         return velocitySum;
     }
@@ -114,6 +133,12 @@ public class SteeringBehavior : MonoBehaviour
         currentWayPoint = 0;
     }
 
+    public void ObstalceAvoidanceOn()
+    {
+        isObstalceOn = true;
+        ObstalceAvoidance();
+    }
+
     //Vector3 PathFollowing()
     //{
     //    //If the agent is close enough to paths.currentWayPoint
@@ -140,5 +165,72 @@ public class SteeringBehavior : MonoBehaviour
         //    return seekOnTargetPos;
         //}
     //}
+
+
+    //Steering Behavior - Obstalce Avoidance
+    public void ObstalceAvoidance()
+    {
+        //Cast a ray from the centre of the agent, in it's forward direction
+        Ray ray = new Ray(transform.position, transform.forward);
+
+        //Name a raycastHit
+        RaycastHit hitInfo;
+
+        //Set avoidanceForce to ZERO for all axis
+        Vector3 avoidanceForce = Vector3.zero;
+
+        //Calculate the 'Avoidance Force'
+        if(Physics.SphereCast(ray, boundingSphereRadius, out hitInfo, obstalceDistance, layerMask))
+        {
+            if(Vector3.Angle(hitInfo.normal, transform.up) > floorAngle)
+            {
+                //Reflect the Vector
+                avoidanceForce = Vector3.Reflect(agent.velocity, hitInfo.normal);
+
+                //Calculate the dot product between the Force and Velocity
+                if(Vector3.Dot(avoidanceForce, agent.velocity) < -0.9f)
+                {
+                    //Transform Right
+                    avoidanceForce = transform.right;
+                }
+            }
+        }
+
+        if(avoidanceForce != Vector3.zero)
+        {
+            //Calculate desired velocity
+            desiredVelocity = (avoidanceForce).normalized * agent.maxSpeed;
+
+            //Calculate the steering Force
+            steeringForce = desiredVelocity - agent.velocity;
+            oldSteeringForce = steeringForce;
+            forceTimer = 0;
+        }
+        else
+        {
+            steeringForce = Vector3.zero;
+        }
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(transform.position, boundingSphereRadius);
+        Gizmos.DrawLine(transform.position, transform.position + transform.forward * obstalceDistance);
+
+        if(agent == null)
+        {
+            return;
+        }
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(transform.position, transform.position + desiredVelocity);
+
+        //if(SteeringBehavior.Rigidbody != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(transform.position, transform.position + agent.velocity);
+        }
+    }
 
 }
