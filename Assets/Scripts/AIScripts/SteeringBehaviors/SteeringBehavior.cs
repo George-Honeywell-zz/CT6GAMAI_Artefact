@@ -8,13 +8,14 @@ public class SteeringBehavior : MonoBehaviour
     Agent agent;
     private Rigidbody rigidBody;
 
+    [Header("Seek")]
     //Seek
     bool isSeekOn = false;
     bool isPathOn = false;
     Vector3 seekOnTargetPos;
     float seekOnStopDistance;
 
-
+    [Header("Wander")]
     //Wander -> not needed?
     bool isWanderOn = false;
     public float wanderRadius = 10.0f;
@@ -26,7 +27,7 @@ public class SteeringBehavior : MonoBehaviour
 
     //Obstalce Avoidance Variables
     [Header("Obstalce Avoidance")]
-    bool isObstalceOn = false;
+    bool isObstalceOn = true;
     public LayerMask layerMask;
     public float boundingSphereRadius = 1.0f;
     public float obstalceDistance = 10.0f;
@@ -37,10 +38,15 @@ public class SteeringBehavior : MonoBehaviour
     public Vector3 oldSteeringForce = Vector3.zero;
     public Vector3 desiredVelocity = Vector3.zero;
     public Vector3 steeringForce = Vector3.zero;
+    public Vector3 Centre;
+    public float maxDistance = 10.0f;
+
+    Collider collider;
 
     void Start()
     {
         agent = GetComponent<Agent>();
+        collider = GetComponent<Collider>();
         wanderTarget += new Vector3(Random.Range(-wanderRadius, wanderRadius) * wanderJitter, 0, Random.Range(-wanderRadius, wanderRadius) * wanderJitter);
     }
     
@@ -68,7 +74,7 @@ public class SteeringBehavior : MonoBehaviour
 
         if (isObstalceOn)
         {
-
+            velocitySum += ObstalceAvoidance();
         }
         return velocitySum;
     }
@@ -139,6 +145,12 @@ public class SteeringBehavior : MonoBehaviour
         ObstalceAvoidance();
     }
 
+    public void ObstacleAvoidanceOff()
+    {
+        isObstalceOn = false;
+        agent.velocity = Vector3.zero;
+    }
+
     //Vector3 PathFollowing()
     //{
     //    //If the agent is close enough to paths.currentWayPoint
@@ -168,7 +180,7 @@ public class SteeringBehavior : MonoBehaviour
 
 
     //Steering Behavior - Obstalce Avoidance
-    public void ObstalceAvoidance()
+    public Vector3 ObstalceAvoidance()
     {
         //Cast a ray from the centre of the agent, in it's forward direction
         Ray ray = new Ray(transform.position, transform.forward);
@@ -180,7 +192,7 @@ public class SteeringBehavior : MonoBehaviour
         Vector3 avoidanceForce = Vector3.zero;
 
         //Calculate the 'Avoidance Force'
-        if(Physics.SphereCast(ray, boundingSphereRadius, out hitInfo, obstalceDistance, layerMask))
+        if(Physics.BoxCast(transform.position + transform.forward, new Vector3(25.0f, 2.5f, 2.5f), transform.forward, out hitInfo, transform.rotation, maxDistance))
         {
             if(Vector3.Angle(hitInfo.normal, transform.up) > floorAngle)
             {
@@ -188,7 +200,7 @@ public class SteeringBehavior : MonoBehaviour
                 avoidanceForce = Vector3.Reflect(agent.velocity, hitInfo.normal);
 
                 //Calculate the dot product between the Force and Velocity
-                if(Vector3.Dot(avoidanceForce, agent.velocity) < -0.9f)
+                if (Vector3.Dot(avoidanceForce, agent.velocity) < -0.9f)
                 {
                     //Transform Right
                     avoidanceForce = transform.right;
@@ -210,13 +222,18 @@ public class SteeringBehavior : MonoBehaviour
         {
             steeringForce = Vector3.zero;
         }
+
+        return steeringForce;
     }
+
 
     void OnDrawGizmos()
     {
         Gizmos.color = Color.magenta;
         Gizmos.DrawWireSphere(transform.position, boundingSphereRadius);
         Gizmos.DrawLine(transform.position, transform.position + transform.forward * obstalceDistance);
+        Gizmos.DrawWireCube(transform.position + transform.forward, new Vector3(25.0f, 2.5f, 2.5f));
+        
 
         if(agent == null)
         {

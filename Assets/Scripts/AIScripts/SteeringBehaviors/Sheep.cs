@@ -13,6 +13,7 @@ public class Sheep : MonoBehaviour
         sb = GetComponent<SteeringBehavior>();
         sb.SeekOn(new Vector3(10, 1, 10));
         sb.WanderOn();
+        //sb.ObstalceAvoidanceOn();
     }
 
     // Update is called once per frame

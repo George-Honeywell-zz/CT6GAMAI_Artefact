@@ -2639,7 +2639,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: -0.38, y: 20.45, z: 0.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -6450,6 +6450,8 @@ MonoBehaviour:
   oldSteeringForce: {x: 0, y: 0, z: 0}
   desiredVelocity: {x: 0, y: 0, z: 0}
   steeringForce: {x: 0, y: 0, z: 0}
+  Centre: {x: 0, y: 0, z: 0}
+  maxDistance: 300
 --- !u!114 &1825150797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6559,7 +6561,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 4
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!1 &1827838156
 GameObject:
@@ -7069,6 +7071,8 @@ MonoBehaviour:
   oldSteeringForce: {x: 0, y: 0, z: 0}
   desiredVelocity: {x: 0, y: 0, z: 0}
   steeringForce: {x: 0, y: 0, z: 0}
+  Centre: {x: 0, y: 0, z: 0}
+  maxDistance: 300
 --- !u!114 &2060066571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7529,6 +7533,8 @@ MonoBehaviour:
   oldSteeringForce: {x: 0, y: 0, z: 0}
   desiredVelocity: {x: 0, y: 0, z: 0}
   steeringForce: {x: 0, y: 0, z: 0}
+  Centre: {x: 0, y: 0, z: 0}
+  maxDistance: 300
 --- !u!114 &2109077890
 MonoBehaviour:
   m_ObjectHideFlags: 0
