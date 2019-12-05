@@ -31,23 +31,26 @@ public class SteeringBehavior : MonoBehaviour
     public LayerMask layerMask;
     public float boundingSphereRadius = 1.0f;
     public float obstalceDistance = 10.0f;
-    public float forceConversion = 0.9f;
-    public float conversionDuration = 1.0f;
+    [Range(0, 90)]
     public float floorAngle = 45.0f;
     public float forceTimer = 0;
     public Vector3 oldSteeringForce = Vector3.zero;
     public Vector3 desiredVelocity = Vector3.zero;
-    public Vector3 steeringForce = Vector3.zero;
+    
     public Vector3 Centre;
-    public float maxDistance = 10.0f;
+    public float maxDistance = 25.0f;
 
-    Collider collider;
+    //New Obstacle Avoidance Variables.
+    public Vector3 steeringForce = Vector3.zero;
+    public GameObject[] objects = GameObject.FindGameObjectsWithTag("Obstacle");
+    public Vector3 obstaclePosition;
+
 
     void Start()
     {
         agent = GetComponent<Agent>();
-        collider = GetComponent<Collider>();
         wanderTarget += new Vector3(Random.Range(-wanderRadius, wanderRadius) * wanderJitter, 0, Random.Range(-wanderRadius, wanderRadius) * wanderJitter);
+        //public GameObject[] objects = GameObject.FindGameObjectsWithTag("Obstacle");
     }
     
     public Vector3 Calculate()
@@ -74,7 +77,7 @@ public class SteeringBehavior : MonoBehaviour
 
         if (isObstalceOn)
         {
-            velocitySum += ObstalceAvoidance();
+            velocitySum += ObstacleAvoidance();
         }
         return velocitySum;
     }
@@ -142,7 +145,7 @@ public class SteeringBehavior : MonoBehaviour
     public void ObstalceAvoidanceOn()
     {
         isObstalceOn = true;
-        ObstalceAvoidance();
+        ObstacleAvoidance();
     }
 
     public void ObstacleAvoidanceOff()
@@ -170,72 +173,107 @@ public class SteeringBehavior : MonoBehaviour
     //    {
     //        return;
     //    }
-        //Else this is the last waypoint
-        //else
-        //{
-        //    //Return Arrive(Paths.CurrentWayPoint)
-        //    return seekOnTargetPos;
-        //}
+    //Else this is the last waypoint
+    //else
+    //{
+    //    //Return Arrive(Paths.CurrentWayPoint)
+    //    return seekOnTargetPos;
+    //}
     //}
 
 
     //Steering Behavior - Obstalce Avoidance
-    public Vector3 ObstalceAvoidance()
+    #region Obstacle Avoidance
+    //Vector3 ObstacleAvoidance()
+    //{
+    //    //Cast a ray from the centre of the agent, in it's forward direction
+    //    Ray ray = new Ray(transform.position, transform.forward);
+
+    //    //Name a raycastHit
+    //    RaycastHit hitInfo;
+
+    //    //Set avoidanceForce to ZERO for all axis
+    //    Vector3 avoidanceForce = Vector3.zero;
+
+    //    //Calculate the 'Avoidance Force'
+    //    if (Physics.BoxCast(transform.position, new Vector3(2.5f, 2.5f, 20.0f), transform.forward, out hitInfo, transform.rotation, maxDistance))
+    //    //if(Physics.SphereCast(ray, boundingSphereRadius, out hitInfo, obstalceDistance, layerMask))
+    //    {
+    //        if (Vector3.Angle(hitInfo.normal, transform.up) > floorAngle)
+    //        {
+    //            //Reflect the Vector
+    //            avoidanceForce = Vector3.Reflect(agent.velocity, hitInfo.normal);
+
+    //            //Calculate the dot product between the Force and Velocity
+    //            if (Vector3.Dot(avoidanceForce, agent.velocity) < 0)
+    //            {
+    //                //Transform Right
+    //                avoidanceForce = transform.right;
+    //                Debug.Log(hitInfo);
+    //            }
+    //        }
+    //    }
+
+    //    if (avoidanceForce != Vector3.zero)
+    //    {
+    //        //Calculate desired velocity
+    //        desiredVelocity = (avoidanceForce).normalized * agent.maxSpeed;
+    //        desiredVelocity = avoidanceForce * agent.maxSpeed;
+
+    //        //Calculate the steering Force
+    //        steeringForce = desiredVelocity - agent.velocity;
+    //        oldSteeringForce = steeringForce;
+    //    }
+    //    else
+    //    {
+    //        steeringForce = Vector3.zero;
+    //    }
+    //    return steeringForce;
+    //}
+    #endregion
+
+
+    Vector3 ObstacleAvoidance()
     {
-        //Cast a ray from the centre of the agent, in it's forward direction
-        Ray ray = new Ray(transform.position, transform.forward);
+        //Variables
+        float forceMultipler;
+        float boxLength = 20.0f;
 
-        //Name a raycastHit
+        //Project a detection box in front of the agent.
         RaycastHit hitInfo;
+        Physics.BoxCast(transform.position, new Vector3(2.5f, 2.5f, 20.0f), transform.forward, out hitInfo, transform.rotation, maxDistance);
 
-        //Set avoidanceForce to ZERO for all axis
-        Vector3 avoidanceForce = Vector3.zero;
-
-        //Calculate the 'Avoidance Force'
-        if(Physics.BoxCast(transform.position + transform.forward, new Vector3(25.0f, 2.5f, 2.5f), transform.forward, out hitInfo, transform.rotation, maxDistance))
+        //Iterate through all "tagged obstacle" and convert them to local space (relative to the vechicle's transform)       
+        int objectCount = objects.Length;
+        Debug.Log(objects);
+        foreach (GameObject _object in objects)
         {
-            if(Vector3.Angle(hitInfo.normal, transform.up) > floorAngle)
-            {
-                //Reflect the Vector
-                avoidanceForce = Vector3.Reflect(agent.velocity, hitInfo.normal);
-
-                //Calculate the dot product between the Force and Velocity
-                if (Vector3.Dot(avoidanceForce, agent.velocity) < -0.9f)
-                {
-                    //Transform Right
-                    avoidanceForce = transform.right;
-                }
-            }
+            obstaclePosition = transform.TransformPoint(obstaclePosition);
+            Debug.Log("Help LOL");
         }
 
-        if(avoidanceForce != Vector3.zero)
-        {
-            //Calculate desired velocity
-            desiredVelocity = (avoidanceForce).normalized * agent.maxSpeed;
+        ////Where do I get the obstacle.LocalPosition.X/Y from?
+        ////Where do I get the obstacle.radius from?
+        //forceMultipler = 1.0 + (boxLength - obstacle.LocalPosition.X) / boxLength;
+        //steeringForce.y = (obstacle.radius - obstacle.LocalPosition.Y) * forceMultipler;
 
-            //Calculate the steering Force
-            steeringForce = desiredVelocity - agent.velocity;
-            oldSteeringForce = steeringForce;
-            forceTimer = 0;
-        }
-        else
-        {
-            steeringForce = Vector3.zero;
-        }
+        //transform.InverseTransformPoint(_steeringForce);
 
         return steeringForce;
     }
 
-
     void OnDrawGizmos()
     {
         Gizmos.color = Color.magenta;
-        Gizmos.DrawWireSphere(transform.position, boundingSphereRadius);
-        Gizmos.DrawLine(transform.position, transform.position + transform.forward * obstalceDistance);
-        Gizmos.DrawWireCube(transform.position + transform.forward, new Vector3(25.0f, 2.5f, 2.5f));
-        
+        //Gizmos.DrawWireSphere(transform.position, boundingSphereRadius);
+        //Gizmos.DrawLine(transform.position, transform.position + transform.forward * obstalceDistance);
+        Gizmos.matrix = transform.localToWorldMatrix;
+        Gizmos.DrawWireCube(transform.forward, new Vector3(2.5f, 2.5f, 20.0f));
 
-        if(agent == null)
+
+
+
+        if (agent == null)
         {
             return;
         }
@@ -243,11 +281,11 @@ public class SteeringBehavior : MonoBehaviour
         Gizmos.color = Color.green;
         Gizmos.DrawLine(transform.position, transform.position + desiredVelocity);
 
-        //if(SteeringBehavior.Rigidbody != null)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawLine(transform.position, transform.position + agent.velocity);
-        }
-    }
 
+        //if(SteeringBehavior.Rigidbody != null)
+        //{
+        //    Gizmos.color = Color.red;
+        //    Gizmos.DrawLine(transform.position, transform.position + agent.velocity);
+        //}
+    }
 }

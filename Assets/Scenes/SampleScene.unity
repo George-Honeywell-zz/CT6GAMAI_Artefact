@@ -365,7 +365,7 @@ GameObject:
   - component: {fileID: 137112126}
   m_Layer: 10
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -457,7 +457,7 @@ GameObject:
   - component: {fileID: 205919138}
   m_Layer: 10
   m_Name: Cube (4)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -719,7 +719,7 @@ GameObject:
   - component: {fileID: 330947140}
   m_Layer: 10
   m_Name: Cube (4)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -811,7 +811,7 @@ GameObject:
   - component: {fileID: 347156005}
   m_Layer: 10
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -996,7 +996,7 @@ GameObject:
   - component: {fileID: 448112730}
   m_Layer: 10
   m_Name: Cube (4)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -1088,7 +1088,7 @@ GameObject:
   - component: {fileID: 457080868}
   m_Layer: 10
   m_Name: Cube (7)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -1180,7 +1180,7 @@ GameObject:
   - component: {fileID: 479071309}
   m_Layer: 10
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -1272,7 +1272,7 @@ GameObject:
   - component: {fileID: 500874423}
   m_Layer: 10
   m_Name: Cube (4)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -1492,7 +1492,7 @@ GameObject:
   - component: {fileID: 539739835}
   m_Layer: 10
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -1584,7 +1584,7 @@ GameObject:
   - component: {fileID: 547161289}
   m_Layer: 10
   m_Name: Cube (4)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -1789,7 +1789,7 @@ GameObject:
   - component: {fileID: 573812485}
   m_Layer: 10
   m_Name: Cube (4)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -1881,7 +1881,7 @@ GameObject:
   - component: {fileID: 584994668}
   m_Layer: 10
   m_Name: Cube (4)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -1973,7 +1973,7 @@ GameObject:
   - component: {fileID: 593597904}
   m_Layer: 10
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -2065,7 +2065,7 @@ GameObject:
   - component: {fileID: 624385316}
   m_Layer: 10
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -2157,7 +2157,7 @@ GameObject:
   - component: {fileID: 644400088}
   m_Layer: 10
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -2249,7 +2249,7 @@ GameObject:
   - component: {fileID: 650072939}
   m_Layer: 10
   m_Name: Cube (5)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -2341,7 +2341,7 @@ GameObject:
   - component: {fileID: 658535550}
   m_Layer: 10
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -2433,7 +2433,7 @@ GameObject:
   - component: {fileID: 667423680}
   m_Layer: 10
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -2751,7 +2751,7 @@ GameObject:
   - component: {fileID: 746493230}
   m_Layer: 10
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -2843,7 +2843,7 @@ GameObject:
   - component: {fileID: 771546421}
   m_Layer: 10
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -2933,12 +2933,12 @@ GameObject:
   - component: {fileID: 782034303}
   - component: {fileID: 782034302}
   - component: {fileID: 782034301}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &782034300
 Transform:
@@ -3119,7 +3119,7 @@ GameObject:
   - component: {fileID: 811519514}
   m_Layer: 10
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -3462,7 +3462,7 @@ GameObject:
   - component: {fileID: 904998908}
   m_Layer: 10
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -3555,7 +3555,7 @@ GameObject:
   - component: {fileID: 928597480}
   m_Layer: 10
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -3647,7 +3647,7 @@ GameObject:
   - component: {fileID: 942570434}
   m_Layer: 10
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -3873,7 +3873,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &974436942
 BoxCollider:
@@ -3962,7 +3962,7 @@ GameObject:
   - component: {fileID: 979444989}
   m_Layer: 10
   m_Name: Cube (4)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -4054,7 +4054,7 @@ GameObject:
   - component: {fileID: 1008447408}
   m_Layer: 10
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -4146,7 +4146,7 @@ GameObject:
   - component: {fileID: 1023327370}
   m_Layer: 10
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -4274,7 +4274,7 @@ GameObject:
   - component: {fileID: 1088512613}
   m_Layer: 10
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -4560,7 +4560,7 @@ GameObject:
   - component: {fileID: 1135520843}
   m_Layer: 10
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -4652,7 +4652,7 @@ GameObject:
   - component: {fileID: 1181289438}
   m_Layer: 10
   m_Name: Cube (6)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -4744,7 +4744,7 @@ GameObject:
   - component: {fileID: 1198572684}
   m_Layer: 10
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -4836,7 +4836,7 @@ GameObject:
   - component: {fileID: 1244902195}
   m_Layer: 10
   m_Name: Cube (4)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -4928,7 +4928,7 @@ GameObject:
   - component: {fileID: 1330808771}
   m_Layer: 10
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -5020,7 +5020,7 @@ GameObject:
   - component: {fileID: 1389903050}
   m_Layer: 10
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -5112,7 +5112,7 @@ GameObject:
   - component: {fileID: 1421644995}
   m_Layer: 10
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -5204,7 +5204,7 @@ GameObject:
   - component: {fileID: 1522398910}
   m_Layer: 10
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -5296,7 +5296,7 @@ GameObject:
   - component: {fileID: 1531489440}
   m_Layer: 10
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -5388,7 +5388,7 @@ GameObject:
   - component: {fileID: 1567587336}
   m_Layer: 10
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -5480,7 +5480,7 @@ GameObject:
   - component: {fileID: 1592510036}
   m_Layer: 10
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -5572,7 +5572,7 @@ GameObject:
   - component: {fileID: 1651792664}
   m_Layer: 10
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -5664,7 +5664,7 @@ GameObject:
   - component: {fileID: 1658116545}
   m_Layer: 10
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -5756,7 +5756,7 @@ GameObject:
   - component: {fileID: 1661263371}
   m_Layer: 10
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -5878,7 +5878,7 @@ GameObject:
   - component: {fileID: 1743616069}
   m_Layer: 10
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -5970,7 +5970,7 @@ GameObject:
   - component: {fileID: 1801284278}
   m_Layer: 10
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -6137,7 +6137,7 @@ GameObject:
   - component: {fileID: 1811240219}
   m_Layer: 10
   m_Name: Cube (5)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -6399,7 +6399,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1825150790}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071067}
   m_LocalPosition: {x: 19, y: 1, z: -15.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -6443,15 +6443,15 @@ MonoBehaviour:
     m_Bits: 1024
   boundingSphereRadius: 1
   obstalceDistance: 10
-  forceConversion: 0.9
-  conversionDuration: 1
   floorAngle: 45
   forceTimer: 0
   oldSteeringForce: {x: 0, y: 0, z: 0}
   desiredVelocity: {x: 0, y: 0, z: 0}
-  steeringForce: {x: 0, y: 0, z: 0}
   Centre: {x: 0, y: 0, z: 0}
-  maxDistance: 300
+  maxDistance: 10
+  steeringForce: {x: 0, y: 0, z: 0}
+  objects: []
+  obstaclePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &1825150797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6577,7 +6577,7 @@ GameObject:
   - component: {fileID: 1827838158}
   m_Layer: 10
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -6669,7 +6669,7 @@ GameObject:
   - component: {fileID: 1880843285}
   m_Layer: 10
   m_Name: Cube (4)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -6791,7 +6791,7 @@ GameObject:
   - component: {fileID: 1916355328}
   m_Layer: 10
   m_Name: Cube (4)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -6883,7 +6883,7 @@ GameObject:
   - component: {fileID: 1966546268}
   m_Layer: 10
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -7064,15 +7064,15 @@ MonoBehaviour:
     m_Bits: 0
   boundingSphereRadius: 1
   obstalceDistance: 10
-  forceConversion: 0.9
-  conversionDuration: 1
   floorAngle: 45
   forceTimer: 0
   oldSteeringForce: {x: 0, y: 0, z: 0}
   desiredVelocity: {x: 0, y: 0, z: 0}
-  steeringForce: {x: 0, y: 0, z: 0}
   Centre: {x: 0, y: 0, z: 0}
   maxDistance: 300
+  steeringForce: {x: 0, y: 0, z: 0}
+  objects: []
+  obstaclePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &2060066571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7223,7 +7223,7 @@ GameObject:
   - component: {fileID: 2081049469}
   m_Layer: 10
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -7526,15 +7526,15 @@ MonoBehaviour:
     m_Bits: 0
   boundingSphereRadius: 1
   obstalceDistance: 10
-  forceConversion: 0.9
-  conversionDuration: 1
   floorAngle: 45
   forceTimer: 0
   oldSteeringForce: {x: 0, y: 0, z: 0}
   desiredVelocity: {x: 0, y: 0, z: 0}
-  steeringForce: {x: 0, y: 0, z: 0}
   Centre: {x: 0, y: 0, z: 0}
   maxDistance: 300
+  steeringForce: {x: 0, y: 0, z: 0}
+  objects: []
+  obstaclePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &2109077890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7606,7 +7606,7 @@ GameObject:
   - component: {fileID: 2128745983}
   m_Layer: 10
   m_Name: Cube (8)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
