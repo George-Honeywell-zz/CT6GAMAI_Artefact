@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     public State<Enemy> m_State;
     public GameObject Player;
     public Agent agent;
+    public AudioSource alert_sound;
 
     void Start()
     {
