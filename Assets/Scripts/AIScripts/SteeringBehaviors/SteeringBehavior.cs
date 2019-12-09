@@ -44,10 +44,9 @@ public class SteeringBehavior : MonoBehaviour
     public Vector3 steeringForce = Vector3.zero;
 
     // ~ Does this have to be called in START or AWAKE?
-    //GameObject[] objects = GameObject.FindGameObjectsWithTag("Obstacle");
+    public GameObject[] objects;
 
     //public List<GameObject> obstacles = GameObject.FindGameObjectsWithTag("Obstacles");
-    public Vector3 obstaclePosition;
 
 
     void Start()
@@ -56,14 +55,14 @@ public class SteeringBehavior : MonoBehaviour
         // ~ Somehow it seems to 'remove' the brackets???
 
         //~This Destroys all of the obstacles in the scene.
-        GameObject[] objects = GameObject.FindGameObjectsWithTag("Obstacle");
-        int objCount = objects.Length;
-        foreach (GameObject obj in objects)
-        {
-            Debug.Log("<color=red>X Position: </color>" + obj.transform.position.x);
-            Debug.Log("<color=blue>Number of Obstalces: </color>" + objCount);
-            //Destroy(obj.gameObject);
-        }
+        objects = GameObject.FindGameObjectsWithTag("Obstacle");
+        //int objCount = objects.Length;
+        //foreach (GameObject obj in objects)
+        //{
+        //    Debug.Log("<color=red>X Position: </color>" + obj.transform.position.x);
+        //    Debug.Log("<color=blue>Number of Obstalces: </color>" + objCount);
+        //    //Destroy(obj.gameObject);
+        //}
 
         agent = GetComponent<Agent>();
         wanderTarget += new Vector3(Random.Range(-wanderRadius, wanderRadius) * wanderJitter, 0, Random.Range(-wanderRadius, wanderRadius) * wanderJitter);
@@ -96,7 +95,7 @@ public class SteeringBehavior : MonoBehaviour
 
         if (isObstalceOn)
         {
-            //velocitySum += ObstacleAvoidance();
+            velocitySum += ObstacleAvoidance();
         }
         return velocitySum;
     }
@@ -252,58 +251,56 @@ public class SteeringBehavior : MonoBehaviour
     #endregion
 
 
-    //Vector3 ObstacleAvoidance(GameObject obstacles)
-    //{
-    //    //Variables
-    //    //GameObject[] obstalces = GameObject.FindGameObjectsWithTag("Obstacles");
-    //    float forceMultipler;
-    //    float boxLength = 20.0f;
-    //    float obstacleRadius = 5.0f;
-    //    Vector3[] obstaclePosition;
+    Vector3 ObstacleAvoidance()
+    {
+        //Variables
+        //GameObject[] obstalces = GameObject.FindGameObjectsWithTag("Obstacles");
+        float forceMultipler;
+        float boxLength = 20.0f;
+        float obstacleRadius = 5.0f;
+        Vector3 obstaclePos = new Vector3();
 
-    //    //Project a detection box in front of the agent.
-    //    RaycastHit hitInfo;
-    //    Physics.BoxCast(transform.position, new Vector3(2.5f, 2.5f, 20.0f), transform.forward, out hitInfo, transform.rotation, maxDistance);
+        //Project a detection box in front of the agent.
+        RaycastHit hitInfo;
+        Physics.BoxCast(transform.position, new Vector3(2.5f, 2.5f, 20.0f), transform.forward, out hitInfo, transform.rotation, maxDistance);
 
-    //    //Iterate through all "tagged obstacle" and convert them to local space (relative to the vechicle's transform)       
-    //    int objectCount = obstalces.Length;
-        
-    //    foreach (GameObject _object in obstalces)
-    //    {
-    //        //Convert tagged obstacle from WORLD to LOCAL space
-    //        //obstaclePosition[] = transform.InverseTransformPoint(obstaclePosition[]);
+        //Iterate through all "tagged obstacle" and convert them to local space (relative to the vechicle's transform)       
+        //int objectCount = objects.Length;
 
-    //        //Vector3 _obstacle = objects[].transform.InverseTransformPoint(obstaclePosition[]);
-    //        Destroy(_object.gameObject);
+        foreach (GameObject _object in objects)
+        {
+            //Convert tagged obstacle from WORLD to LOCAL space
+            obstaclePos = transform.InverseTransformPoint(obstaclePos);
+            
+        }
 
-    //        //Debug.Log(objects);
-    //    }
-
-    //    //Check if objects intersect with detection box
+        //Check if objects intersect with detection box
 
 
 
-    //    //Find all Intsersection Points
-    //    // ~ Use the closest intersection point to the agent
-    //    // ~ Find what obstalce the intersection point belongs to and use that as the closest obstalce
+        //Find all Intsersection Points
+        // ~Use the closest intersection point to the agent
+        // ~Find what obstalce the intersection point belongs to and use that as the closest obstalce
 
-    //    ////Where do I get the obstacle.LocalPosition.X/Y from?
-    //    ////Where do I get the obstacle.radius from?
-        
-    //    //Now if we have a CLOEST OBSTACLE
-    //    ///forceMultipler = 1.0 + (boxLength - objects[].transform.position.x) / boxLength;
-    //    // ~ The further away the obstacle is, the smaller the ForceMultipler becomes.
+        //Where do I get the obstacle.LocalPosition.X/Y from?
+        //Where do I get the obstacle.radius from?
 
-    //    ///steeringForce.y = (obstacleRadius - objects[].transform.position.y) * forceMultipler;
-    //    // ~ Get a Y direction that is perpendicular to the obstacle relative to the agent's location
-
-    //    //This was all done in LOCAL SPACE
-    //    ///transform.InverseTransformPoint(steeringForce);
-    //    // ~ Convert SteeringForce (which is a direction) back to WORLD space and return it (matrices again)
+        //Now if we have a CLOEST OBSTACLE
+        //Assuming this would be in an IF statement checking if an obstacle is close?
+        forceMultipler = 1 + (boxLength - obstaclePos.x) / boxLength;
+        // ~ The further away the obstacle is, the smaller the ForceMultipler becomes.
 
 
-    //    return steeringForce;
-    //}
+        steeringForce.y = (obstacleRadius - obstaclePos.y) * forceMultipler;
+        // ~ Get a Y direction that is perpendicular to the obstacle relative to the agent's location
+
+        //This was all done in LOCAL SPACE
+        transform.InverseTransformPoint(steeringForce);
+        // ~ Convert SteeringForce(which is a direction) back to WORLD space and return it(matrices again)
+
+
+        return steeringForce;
+    }
 
     void OnDrawGizmos()
     {
