@@ -45,7 +45,7 @@ public class SteeringBehavior : MonoBehaviour
 
     // ~ Does this have to be called in START or AWAKE?
     public GameObject[] objects;
-    public ProjectedCube projectedCube = new ProjectedCube();
+    public ProjectedCube projectedCube;
     GameObject obstacleClosestGameObject;
     public float obstacleBoxSize;
 
@@ -308,10 +308,7 @@ public class SteeringBehavior : MonoBehaviour
     Vector3 ObstacleAvoidance()
     {
         Vector2 obstacleForce = new Vector2();
-        projectedCube.transform.localScale = new Vector3(gameObject.GetComponent<Collider>().bounds.size.x,
-            projectedCube.transform.localScale.y,
-            obstacleBoxSize + (agent.velocity.magnitude / agent.maxSpeed) * obstacleBoxSize);
-
+        projectedCube.transform.localScale = new Vector3(gameObject.GetComponent<Collider>().bounds.size.x, projectedCube.transform.localScale.y, obstacleBoxSize + (agent.velocity.magnitude / agent.maxSpeed) * obstacleBoxSize);
 
 
         projectedCube.transform.localPosition = new Vector3(0, 0, projectedCube.transform.localScale.z / 2);

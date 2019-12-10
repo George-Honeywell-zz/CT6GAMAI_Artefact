@@ -19,18 +19,18 @@ public class ProjectedCube : MonoBehaviour
 /// <summary>
 ///  
 /// </summary>
-/// <param name="agent"></param>
+/// <param name="Other"></param>
 /// <returns></returns>
-    public Agent Check(Agent agent)
+    public Agent Check(Agent Other)
     {
         float distance = float.MaxValue;
-        Agent ret = agent;
+        Agent ret = Other;
         ret = null;
         foreach(var item in collidedObjects)
         {
             var Ref = item.GetComponent<Agent>();
             if (Ref){
-                var d = Vector3.Distance(agent.transform.position, item.transform.position);
+                var d = Vector3.Distance(Other.transform.position, item.transform.position);
                 if(d < distance)
                 {
                     distance = d;
