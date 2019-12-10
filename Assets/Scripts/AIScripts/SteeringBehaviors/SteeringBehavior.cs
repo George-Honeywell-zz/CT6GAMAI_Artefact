@@ -45,6 +45,9 @@ public class SteeringBehavior : MonoBehaviour
 
     // ~ Does this have to be called in START or AWAKE?
     public GameObject[] objects;
+    public ProjectedCube projectedCube = new ProjectedCube();
+    GameObject obstacleClosestGameObject;
+    public float obstacleBoxSize;
 
     //public List<GameObject> obstacles = GameObject.FindGameObjectsWithTag("Obstacles");
 
@@ -304,11 +307,69 @@ public class SteeringBehavior : MonoBehaviour
 
     Vector3 ObstacleAvoidance()
     {
-        Vector3 obstacleForce = new Vector2();
+        Vector2 obstacleForce = new Vector2();
+        projectedCube.transform.localScale = new Vector3(gameObject.GetComponent<Collider>().bounds.size.x,
+            projectedCube.transform.localScale.y,
+            obstacleBoxSize + (agent.velocity.magnitude / agent.maxSpeed) * obstacleBoxSize);
 
 
 
-        return new Vector3();
+        projectedCube.transform.localPosition = new Vector3(0, 0, projectedCube.transform.localScale.z / 2);
+        var boxSize = obstacleBoxSize + (agent.speed / agent.maxSpeed) * obstacleBoxSize;
+        obstacleClosestGameObject = null;
+
+        float distance = float.MaxValue;
+        Collider closestObject = new Collider();
+        var foundObject = false;
+        Vector2 localPositionOfCloesetObject = new Vector2();
+
+        foreach(var item in projectedCube.collidedObjects)
+        {
+            if(Vector2.Distance(transform.position, item.transform.position) < distance && (item.CompareTag("Obstacle")) && item != gameObject)
+            {
+                Vector2 localPosition = transform.InverseTransformPoint(item.transform.position);
+                var expandedRadius = item.GetComponent<Collider>().bounds.size.magnitude + agent.GetComponent<Collider>().bounds.size.magnitude;
+                if (Mathf.Abs(localPosition.y) < expandedRadius)
+                {
+                    var _X = localPosition.x;
+                    var _Y = localPosition.y;
+                    var SqrtPart = Mathf.Sqrt(expandedRadius * expandedRadius - _Y * _X);
+
+                    var ip = _X - SqrtPart;
+
+                    if(ip <= 0.0)
+                        ip = _X + SqrtPart;
+
+                    if(ip < distance)
+                    {
+                        distance = ip;
+                        foundObject = true;
+                        closestObject = item.GetComponent<Collider>();
+                        obstacleClosestGameObject = item.gameObject;
+                        localPositionOfCloesetObject = localPosition;
+                    }
+                }
+            }
+        }
+
+        Vector2 steeringForce = new Vector2();
+        if (foundObject)
+        {
+            var multiplier = 1.0f + (boxSize - localPositionOfCloesetObject.x) / boxSize;
+            var mag = closestObject.bounds.size.magnitude;
+
+            steeringForce.y = (mag - localPositionOfCloesetObject.y) * multiplier;
+
+            var breakingWeight = 0.5f;
+
+            steeringForce.x = (mag - localPositionOfCloesetObject.x) * breakingWeight;
+            Vector3 transformForce = transform.TransformPoint(new Vector3(steeringForce.x, 0, steeringForce.y));
+            obstacleForce = new Vector2(transformForce.z, transformForce.x);
+            return new Vector2(transformForce.z, transformForce.x);
+        }
+
+
+        return new Vector2();
     }
 
     void OnDrawGizmos()

@@ -7,6 +7,7 @@ public class Agent : MonoBehaviour
 {
     public Vector3 velocity;
     public float mass = 1;
+    public float speed = 0.5f;
     public float maxSpeed = 1;
     public float maxForce = 1;
     public float maxTurnRate = 1.0f;
