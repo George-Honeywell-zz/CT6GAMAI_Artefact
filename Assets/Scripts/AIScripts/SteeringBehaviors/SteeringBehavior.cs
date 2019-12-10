@@ -308,37 +308,46 @@ public class SteeringBehavior : MonoBehaviour
     Vector3 ObstacleAvoidance()
     {
         Vector2 obstacleForce = new Vector2();
+
+        //Project a detection box in front of the agent
+        //In this case, a Box Collider has been created with a script attached to it
         projectedCube.transform.localScale = new Vector3(gameObject.GetComponent<Collider>().bounds.size.x, projectedCube.transform.localScale.y, obstacleBoxSize + (agent.velocity.magnitude / agent.maxSpeed) * obstacleBoxSize);
 
 
         projectedCube.transform.localPosition = new Vector3(0, 0, projectedCube.transform.localScale.z / 2);
-        var boxSize = obstacleBoxSize + (agent.speed / agent.maxSpeed) * obstacleBoxSize;
+        float boxSize = obstacleBoxSize + (agent.speed / agent.maxSpeed) * obstacleBoxSize;
         obstacleClosestGameObject = null;
 
         float distance = float.MaxValue;
         Collider closestObject = new Collider();
-        var foundObject = false;
+        bool foundObject = false;
         Vector2 localPositionOfCloesetObject = new Vector2();
-
-        foreach(var item in projectedCube.collidedObjects)
+        
+        //Iterate through all "tagged" obstacles 
+        foreach(GameObject item in projectedCube.collidedObjects)
         {
             if(Vector2.Distance(transform.position, item.transform.position) < distance && (item.CompareTag("Obstacle")) && item != gameObject)
             {
+                //Convert obstacles to LOCAL SPACE from WORLD SPACE.
                 Vector2 localPosition = transform.InverseTransformPoint(item.transform.position);
                 var expandedRadius = item.GetComponent<Collider>().bounds.size.magnitude + agent.GetComponent<Collider>().bounds.size.magnitude;
+
+                //Check if Objects intersect with detection box
                 if (Mathf.Abs(localPosition.y) < expandedRadius)
                 {
-                    var _X = localPosition.x;
-                    var _Y = localPosition.y;
-                    var SqrtPart = Mathf.Sqrt(expandedRadius * expandedRadius - _Y * _X);
+                    float _X = localPosition.x;
+                    float _Y = localPosition.y;
+                    float SqrtPart = Mathf.Sqrt(expandedRadius * expandedRadius - _Y * _X);
 
-                    var ip = _X - SqrtPart;
+                    float ip = _X - SqrtPart;
 
                     if(ip <= 0.0)
                         ip = _X + SqrtPart;
 
+                    //Use the closest intersection point to the agent
                     if(ip < distance)
                     {
+                        //Find what obstacle the intersection point belongs to and use that as the closest obstacle
                         distance = ip;
                         foundObject = true;
                         closestObject = item.GetComponent<Collider>();
@@ -349,24 +358,29 @@ public class SteeringBehavior : MonoBehaviour
             }
         }
 
+        //If we have a closest obstacle
         Vector2 steeringForce = new Vector2();
         if (foundObject)
         {
-            var multiplier = 1.0f + (boxSize - localPositionOfCloesetObject.x) / boxSize;
-            var mag = closestObject.bounds.size.magnitude;
+            //The further away the obstalce is, the smaller the ForceMultipler
+            float forceMultiplier = 1.0f + (boxSize - localPositionOfCloesetObject.x) / boxSize;
+            float magnitude = closestObject.bounds.size.magnitude;
 
-            steeringForce.y = (mag - localPositionOfCloesetObject.y) * multiplier;
+            //Get the Y Direction that is perpendicular to the obstacle relative to the agent's location
+            steeringForce.y = (magnitude - localPositionOfCloesetObject.y) * forceMultiplier;
 
-            var breakingWeight = 0.5f;
+            //float breakingWeight = 0.005f;
+            //steeringForce.x = (magnitude - localPositionOfCloesetObject.x) * breakingWeight;
 
-            steeringForce.x = (mag - localPositionOfCloesetObject.x) * breakingWeight;
+            //Convert Steering Force back to WORLD SPACE and return it
             Vector3 transformForce = transform.TransformPoint(new Vector3(steeringForce.x, 0, steeringForce.y));
-            obstacleForce = new Vector2(transformForce.z, transformForce.x);
+
+            //obstacleForce = new Vector2(transformForce.z, transformForce.x);
             return new Vector2(transformForce.z, transformForce.x);
         }
 
-
-        return new Vector2();
+        //If no obstacle was found, return a zeroed steering force
+        return Vector3.zero;
     }
 
     void OnDrawGizmos()
