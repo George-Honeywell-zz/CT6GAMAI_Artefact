@@ -3097,7 +3097,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 796797184}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -6804,6 +6804,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 957fecefba804704bbd2e5172fb17792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toTarget: {x: 0, y: 0, z: 0}
+  distanceToTarget: {x: 0, y: 0, z: 0}
   wanderRadius: 1
   wanderDistance: 6
   wanderJitter: 2
@@ -6811,16 +6813,8 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 1024
-  boundingSphereRadius: 1
-  obstalceDistance: 10
-  floorAngle: 45
-  forceTimer: 0
-  oldSteeringForce: {x: 0, y: 0, z: 0}
   desiredVelocity: {x: 0, y: 0, z: 0}
-  Centre: {x: 0, y: 0, z: 0}
-  maxDistance: 10
   steeringForce: {x: 0, y: 0, z: 0}
-  objects: []
   projectedCube: {fileID: 528270487}
   obstacleBoxSize: 2
 --- !u!114 &1825150797
@@ -7402,6 +7396,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 957fecefba804704bbd2e5172fb17792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toTarget: {x: 0, y: 0, z: 0}
+  distanceToTarget: {x: 0, y: 0, z: 0}
   wanderRadius: 1
   wanderDistance: 6
   wanderJitter: 2
@@ -7409,16 +7405,8 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 0
-  boundingSphereRadius: 1
-  obstalceDistance: 10
-  floorAngle: 45
-  forceTimer: 0
-  oldSteeringForce: {x: 0, y: 0, z: 0}
   desiredVelocity: {x: 0, y: 0, z: 0}
-  Centre: {x: 0, y: 0, z: 0}
-  maxDistance: 300
   steeringForce: {x: 0, y: 0, z: 0}
-  objects: []
   projectedCube: {fileID: 528270487}
   obstacleBoxSize: 0
 --- !u!114 &2060066571
@@ -7869,6 +7857,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 957fecefba804704bbd2e5172fb17792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toTarget: {x: 0, y: 0, z: 0}
+  distanceToTarget: {x: 0, y: 0, z: 0}
   wanderRadius: 1
   wanderDistance: 6
   wanderJitter: 2
@@ -7876,16 +7866,8 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 1024
-  boundingSphereRadius: 1
-  obstalceDistance: 10
-  floorAngle: 45
-  forceTimer: 0
-  oldSteeringForce: {x: 0, y: 0, z: 0}
   desiredVelocity: {x: 0, y: 0, z: 0}
-  Centre: {x: 0, y: 0, z: 0}
-  maxDistance: 300
   steeringForce: {x: 0, y: 0, z: 0}
-  objects: []
   projectedCube: {fileID: 528270487}
   obstacleBoxSize: 2
 --- !u!114 &2109077890
