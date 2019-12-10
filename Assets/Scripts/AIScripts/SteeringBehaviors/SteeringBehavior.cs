@@ -251,55 +251,64 @@ public class SteeringBehavior : MonoBehaviour
     #endregion
 
 
+    //Vector3 ObstacleAvoidance()
+    //{
+    //    //Variables
+    //    //GameObject[] obstalces = GameObject.FindGameObjectsWithTag("Obstacles");
+    //    float forceMultipler;
+    //    float boxLength = 20.0f;
+    //    float obstacleRadius = 5.0f;
+    //    Vector3 obstaclePos = new Vector3();
+
+    //    //Project a detection box in front of the agent.
+    //    RaycastHit hitInfo;
+    //    Physics.BoxCast(transform.position, new Vector3(2.5f, 2.5f, 20.0f), transform.forward, out hitInfo, transform.rotation, maxDistance);
+
+    //    //Iterate through all "tagged obstacle" and convert them to local space (relative to the vechicle's transform)       
+    //    //int objectCount = objects.Length;
+
+    //    foreach (GameObject _object in objects)
+    //    {
+    //        //Convert tagged obstacle from WORLD to LOCAL space
+    //        obstaclePos = transform.InverseTransformPoint(obstaclePos);
+            
+    //    }
+
+    //    //Check if objects intersect with detection box
+
+
+
+    //    //Find all Intsersection Points
+    //    // ~Use the closest intersection point to the agent
+    //    // ~Find what obstalce the intersection point belongs to and use that as the closest obstalce
+
+    //    //Where do I get the obstacle.LocalPosition.X/Y from?
+    //    //Where do I get the obstacle.radius from?
+
+    //    //Now if we have a CLOEST OBSTACLE
+    //    //Assuming this would be in an IF statement checking if an obstacle is close?
+    //    forceMultipler = 1 + (boxLength - obstaclePos.x) / boxLength;
+    //    // ~ The further away the obstacle is, the smaller the ForceMultipler becomes.
+
+
+    //    steeringForce.y = (obstacleRadius - obstaclePos.y) * forceMultipler;
+    //    // ~ Get a Y direction that is perpendicular to the obstacle relative to the agent's location
+
+    //    //This was all done in LOCAL SPACE
+    //    transform.InverseTransformPoint(steeringForce);
+    //    // ~ Convert SteeringForce(which is a direction) back to WORLD space and return it(matrices again)
+
+
+    //    return steeringForce;
+    //}
+
     Vector3 ObstacleAvoidance()
     {
-        //Variables
-        //GameObject[] obstalces = GameObject.FindGameObjectsWithTag("Obstacles");
-        float forceMultipler;
-        float boxLength = 20.0f;
-        float obstacleRadius = 5.0f;
-        Vector3 obstaclePos = new Vector3();
-
-        //Project a detection box in front of the agent.
-        RaycastHit hitInfo;
-        Physics.BoxCast(transform.position, new Vector3(2.5f, 2.5f, 20.0f), transform.forward, out hitInfo, transform.rotation, maxDistance);
-
-        //Iterate through all "tagged obstacle" and convert them to local space (relative to the vechicle's transform)       
-        //int objectCount = objects.Length;
-
-        foreach (GameObject _object in objects)
-        {
-            //Convert tagged obstacle from WORLD to LOCAL space
-            obstaclePos = transform.InverseTransformPoint(obstaclePos);
-            
-        }
-
-        //Check if objects intersect with detection box
+        Vector3 obstacleForce = new Vector2();
 
 
 
-        //Find all Intsersection Points
-        // ~Use the closest intersection point to the agent
-        // ~Find what obstalce the intersection point belongs to and use that as the closest obstalce
-
-        //Where do I get the obstacle.LocalPosition.X/Y from?
-        //Where do I get the obstacle.radius from?
-
-        //Now if we have a CLOEST OBSTACLE
-        //Assuming this would be in an IF statement checking if an obstacle is close?
-        forceMultipler = 1 + (boxLength - obstaclePos.x) / boxLength;
-        // ~ The further away the obstacle is, the smaller the ForceMultipler becomes.
-
-
-        steeringForce.y = (obstacleRadius - obstaclePos.y) * forceMultipler;
-        // ~ Get a Y direction that is perpendicular to the obstacle relative to the agent's location
-
-        //This was all done in LOCAL SPACE
-        transform.InverseTransformPoint(steeringForce);
-        // ~ Convert SteeringForce(which is a direction) back to WORLD space and return it(matrices again)
-
-
-        return steeringForce;
+        return new Vector3();
     }
 
     void OnDrawGizmos()
@@ -307,8 +316,8 @@ public class SteeringBehavior : MonoBehaviour
         Gizmos.color = Color.magenta;
         //Gizmos.DrawWireSphere(transform.position, boundingSphereRadius);
         //Gizmos.DrawLine(transform.position, transform.position + transform.forward * obstalceDistance);
-        Gizmos.matrix = transform.localToWorldMatrix;
-        Gizmos.DrawWireCube(transform.forward, new Vector3(2.5f, 2.5f, 20.0f));
+        //Gizmos.matrix = transform.localToWorldMatrix;
+        //Gizmos.DrawWireCube(transform.forward, new Vector3(2.5f, 2.5f, 20.0f));
 
 
 
