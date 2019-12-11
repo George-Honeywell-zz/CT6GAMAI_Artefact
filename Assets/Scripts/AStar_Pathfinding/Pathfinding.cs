@@ -36,32 +36,15 @@ public class Pathfinding : MonoBehaviour
 
         if (startNode.walkable && targetNode.walkable)
         {
-
+            //A Heap/Hashset is used to help manage the algorithm and optimize performance
             Heap<Node> openSet = new Heap<Node>(grid.MaxSize);
             HashSet<Node> closedSet = new HashSet<Node>();
             openSet.Add(startNode);
 
-
-            //<summary>
-            //Currently the slowest part of the algorithm, as with each iteration, 
-            //the algorithm searches through the entire open set
-            //to find the node with the lowest F cost.
-            //</summary>
             while (openSet.Count > 0)
             {
                 Node currentNode = openSet.RemoveFirst();
-                //for(int i = 1; i < openSet.Count; i++)
-                //{
-                //    if(openSet[i].fCost < currentNode.fCost 
-                //       || openSet[i].fCost == currentNode.fCost && openSet[i].hCost < currentNode.hCost)
-                //    {
-                //        currentNode = openSet[i];
-                //    }
-                //}
-
-                //openSet.Remove(currentNode);
                 closedSet.Add(currentNode);
-
 
                 if (currentNode == targetNode)
                 {

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class FramesPerSecond : MonoBehaviour
 {
-    string label2 = "A* Pathfinding Example Project";
+    string label2 = "CT6GAMAI Artefact - 843814";
     string label = "";
     
     float count;

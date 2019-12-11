@@ -10,21 +10,20 @@ public class SteeringBehavior : MonoBehaviour
 
     [Header("Seek")]
     //Seek
+    public bool isSeekOn = true;
     Vector3 seekOnTargetPos;
-    bool isSeekOn = false;
-    bool isPathOn = false;
-    float seekOnStopDistance;
+    public float seekOnStopDistance;
 
     [Header("Arrive")]
     public Vector3 toTarget;
     public Vector3 distanceToTarget;
     Vector3 targetPosition;
-    bool isArriveOn;
+    public bool isArriveOn;
 
     [Header("Wander")]
     //Wander -> not needed?
-    public float wanderRadius = 10.0f;
-    bool isWanderOn = false;
+    public bool isWanderOn = false;
+    public float wanderRadius = 10.0f; 
     public float wanderDistance = 10.0f;
     public float wanderJitter = 1.0f;
     public Vector3 wanderTarget = Vector3.zero;
@@ -34,15 +33,19 @@ public class SteeringBehavior : MonoBehaviour
     //Obstalce Avoidance Variables
     [Header("Obstalce Avoidance")]
     public LayerMask layerMask;
-    bool isObstalceOn = true;
+    public bool isObstalceOn = false;
     public Vector3 desiredVelocity = Vector3.zero;
     public Vector3 steeringForce = Vector3.zero;
-
-    // ~ Does this have to be called in START or AWAKE?
+    public Vector2 obstacleForce;
     GameObject[] objects;
     public ProjectedCube projectedCube;
     GameObject obstacleClosestGameObject;
     public float obstacleBoxSize;
+
+
+    [Header("Path Following")]
+    public bool isPathOn = false;
+    // ~ Does this have to be called in START or AWAKE?
 
 
 
@@ -99,6 +102,10 @@ public class SteeringBehavior : MonoBehaviour
         {
             velocitySum += Arrive(targetPosition);
         }
+        if (isPathOn)
+        {
+            velocitySum += PathFollowing();
+        }
         return velocitySum;
     }
 
@@ -115,13 +122,17 @@ public class SteeringBehavior : MonoBehaviour
 
     Vector3 Arrive(Vector3 targetPosition)
     {
+        //<summary>
+        //Works like 'SEEK' but applies a scalar to the velocity to adjust its magnitude
+        //based on the distance to the target
+        //</summary>
         Vector3 toTarget = targetPosition - agent.transform.position;
         float distance = toTarget.magnitude;
         float slowingDistance;
 
         if(distance > 0)
         {
-            slowingDistance = 0.5f;
+            slowingDistance = 0.005f;
             agent.speed = distance / slowingDistance;
             Mathf.Clamp(agent.speed, 0.0f, 1.0f);
             desiredVelocity = toTarget.normalized * agent.speed / distance;
@@ -167,7 +178,7 @@ public class SteeringBehavior : MonoBehaviour
 
     public void WanderOn()
     {
-        isWanderOn = true;
+        isWanderOn = false;
         InvokeRepeating("NewWanderTarget", 0, 1);
     }
 
@@ -187,7 +198,6 @@ public class SteeringBehavior : MonoBehaviour
     public void ObstalceAvoidanceOn()
     {
         isObstalceOn = true;
-        //ObstacleAvoidance();
     }
 
     public void ObstacleAvoidanceOff()
@@ -213,18 +223,20 @@ public class SteeringBehavior : MonoBehaviour
         }
         else
         {
-            //???
+            //Arrive at a wayPoint on the Path
             return Arrive(path[currentWayPoint]);
         }
     }
 
     Vector3 ObstacleAvoidance()
     {
-        Vector2 obstacleForce = new Vector2();
+        obstacleForce = new Vector2();
 
         //Project a detection box in front of the agent
         //In this case, a Box Collider has been created with a script attached to it
-        projectedCube.transform.localScale = new Vector3(gameObject.GetComponent<Collider>().bounds.size.x, projectedCube.transform.localScale.y, obstacleBoxSize + (agent.velocity.magnitude / agent.maxSpeed) * obstacleBoxSize);
+        projectedCube.transform.localScale = new Vector3(gameObject.GetComponent<Collider>().bounds.size.x,
+            projectedCube.transform.localScale.y,
+            obstacleBoxSize + (agent.velocity.magnitude / agent.maxSpeed) * obstacleBoxSize);
 
 
         projectedCube.transform.localPosition = new Vector3(0, 0, projectedCube.transform.localScale.z / 2);
@@ -275,6 +287,7 @@ public class SteeringBehavior : MonoBehaviour
         Vector2 steeringForce = new Vector2();
         if (foundObject)
         {
+            Debug.Log("<color=red>Obstacle Found!</color>");
             //The further away the obstalce is, the smaller the ForceMultipler
             float forceMultiplier = 1.0f + (boxSize - localPositionOfCloesetObject.x) / boxSize;
             float magnitude = closestObject.bounds.size.magnitude;
@@ -282,12 +295,12 @@ public class SteeringBehavior : MonoBehaviour
             //Get the Y Direction that is perpendicular to the obstacle relative to the agent's location
             steeringForce.y = (magnitude - localPositionOfCloesetObject.y) * forceMultiplier;
 
-            //float breakingWeight = 0.005f;
-            //steeringForce.x = (magnitude - localPositionOfCloesetObject.x) * breakingWeight;
+            float breakingWeight = 0.005f;
+            steeringForce.x = (magnitude - localPositionOfCloesetObject.x) * breakingWeight;
 
             //Convert Steering Force back to WORLD SPACE and return it
             Vector3 transformForce = transform.TransformPoint(new Vector3(steeringForce.x, 0, steeringForce.y));
-
+            obstacleForce = new Vector2(transformForce.z, transformForce.x);
             //obstacleForce = new Vector2(transformForce.z, transformForce.x);
             return new Vector2(transformForce.z, transformForce.x);
         }

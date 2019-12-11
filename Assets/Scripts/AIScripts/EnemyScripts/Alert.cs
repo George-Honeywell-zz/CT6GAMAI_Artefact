@@ -4,16 +4,11 @@ using UnityEngine;
 
 public class Alert : State<Enemy>
 {
-
     public GameObject Player;
-    private Material material;
-
-    Color orange = new Vector4(1.0f, 0.6f, 0.0f);
 
     public override void Execute(Enemy enemy)
     {
         Debug.Log("Agent in 'ALERT' State");
-        enemy.alert_sound.Play();
 
         //Vector3 targetDirection = enemy.transform.position - enemy.Player.transform.position;
         Vector3 targetDirection = enemy.Player.transform.position - enemy.transform.position;
