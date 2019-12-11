@@ -4550,7 +4550,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1094338835}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.53, y: 1, z: -17.65}
+  m_LocalPosition: {x: -16.6, y: 1, z: -25.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 963194228}
@@ -6767,7 +6767,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1825150790}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071067}
-  m_LocalPosition: {x: 18.34, y: 1, z: -10.52}
+  m_LocalPosition: {x: 13.98, y: 1, z: -11.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 64109839}
@@ -6805,24 +6805,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSeekOn: 1
-  isPathOn: 0
+  seekOnStopDistance: 0
   toTarget: {x: 0, y: 0, z: 0}
   distanceToTarget: {x: 0, y: 0, z: 0}
   isArriveOn: 0
+  isWanderOn: 0
   wanderRadius: 1
-  isWanderOn: 1
   wanderDistance: 6
   wanderJitter: 2
   wanderTarget: {x: 0, y: 0, z: 0}
   layerMask:
     serializedVersion: 2
     m_Bits: 1024
-  isObstalceOn: 0
+  isObstalceOn: 1
   desiredVelocity: {x: 0, y: 0, z: 0}
   steeringForce: {x: 0, y: 0, z: 0}
   obstacleForce: {x: 0, y: 0}
   projectedCube: {fileID: 528270487}
   obstacleBoxSize: 2
+  isPathOn: 0
 --- !u!114 &1825150797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6908,7 +6909,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!1 &1827838156
 GameObject:
@@ -7403,12 +7404,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSeekOn: 0
-  isPathOn: 0
+  seekOnStopDistance: 0
   toTarget: {x: 0, y: 0, z: 0}
   distanceToTarget: {x: 0, y: 0, z: 0}
   isArriveOn: 0
-  wanderRadius: 1
   isWanderOn: 0
+  wanderRadius: 1
   wanderDistance: 6
   wanderJitter: 2
   wanderTarget: {x: 0, y: 0, z: 0}
@@ -7421,6 +7422,7 @@ MonoBehaviour:
   obstacleForce: {x: 0, y: 0}
   projectedCube: {fileID: 528270487}
   obstacleBoxSize: 0
+  isPathOn: 0
 --- !u!114 &2060066571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7665,6 +7667,7 @@ GameObject:
   - component: {fileID: 2109077886}
   - component: {fileID: 2109077888}
   - component: {fileID: 2109077890}
+  - component: {fileID: 2109077883}
   - component: {fileID: 2109077889}
   - component: {fileID: 2109077891}
   - component: {fileID: 2109077885}
@@ -7752,6 +7755,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2109077883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2109077878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e1d6777706d1e24395f239484bce91a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 1094338839}
+  maxAngle: 45
+  maxRadius: 15
 --- !u!54 &2109077885
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7822,12 +7840,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSeekOn: 1
-  isPathOn: 0
+  seekOnStopDistance: 0
   toTarget: {x: 0, y: 0, z: 0}
   distanceToTarget: {x: 0, y: 0, z: 0}
   isArriveOn: 0
-  wanderRadius: 1
   isWanderOn: 1
+  wanderRadius: 1
   wanderDistance: 6
   wanderJitter: 2
   wanderTarget: {x: 0, y: 0, z: 0}
@@ -7840,6 +7858,7 @@ MonoBehaviour:
   obstacleForce: {x: 0, y: 0}
   projectedCube: {fileID: 528270487}
   obstacleBoxSize: 2
+  isPathOn: 0
 --- !u!114 &2109077890
 MonoBehaviour:
   m_ObjectHideFlags: 0
